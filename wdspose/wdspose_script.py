@@ -95,7 +95,7 @@ def main():
             # capture webcam image
             ret, frame = cap.read()
             if not ret:
-                print("webcam failed")
+                #--------print("webcam failed")
                 exit()
           
             cv2.imwrite("workspace/input_imgs/test.jpg", frame)
@@ -119,7 +119,7 @@ def main():
             depth_image = scripts.megadepth.predict_depth(img, depth_model, batch_size=1)
             # np.save(os.path.join("workspace/depth", '%s.npy' % img_f.split("/")[-1]), depth_image)
             # scripts.megadepth.predict(depth_model, img_folder, depth_folder)
-            print("depth_time", time.time() - depthtime)
+            #------------print("depth_time", time.time() - depthtime)
             
             #torch.cuda.empty_cache()
 
@@ -134,7 +134,7 @@ def main():
             
             # save(os.path.join("workspace/bboxes", "%s.pkl" % img_f.split("/")[-1]), cls_boxes[1])
                 # torch.cuda.empty_cache()
-            print("box_time", time.time() - boxtime)
+            #------------print("box_time", time.time() - boxtime)
             # scripts.maskrcnn.predict(maskrcnn_model, img_folder, bboxes)
             
           
@@ -165,14 +165,14 @@ def main():
             # exit()
             test_loader, test_set, wdspose_transforms = scripts.predict.setup_data(wdspose_config, img_folder, metadata, keypoints, depth_folder)
             scripts.predict.do_your_thing(wdspose_model, test_loader, test_set, wdspose_transforms, img_folder, "workspace/results.pkl")
-            print("wdspose", time.time() - wdsposetime)
+            #-------------print("wdspose", time.time() - wdsposetime)
 
             # exit()
             # torch.cuda.empty_cache()
             
             # print("gesamt:", time.time() - ges_time, "freq:", 1/(time.time() - ges_time))
             # exit()
-            print("++++++++++++")
+            #----------------print("++++++++++++")
 
 if __name__ == "__main__":
     main()
